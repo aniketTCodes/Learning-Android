@@ -4,15 +4,16 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavHostController
+import androidx.navigation.NavType
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.example.littlelemonrestaurent.ui.theme.LittleLemonRestaurentTheme
 
 class MainActivity : ComponentActivity() {
@@ -20,26 +21,35 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             LittleLemonRestaurentTheme {
-               HomeScreen()
+                val navController= rememberNavController()
+                NavHost(navController = navController, startDestination = HomeScreen.route){
+                    composable(HomeScreen.route){
+                        HomeScreen(navController)
+                    }
+                    composable(
+                        DishScreen.route+"/{${DishScreen.argDishId}}",
+                        arguments = listOf(navArgument(DishScreen.argDishId){type= NavType.IntType})
+                        ){
+                        val id= it.arguments!!.getInt(DishScreen.argDishId)
+                           DishDetail(id)
+                        }
+
+                    }
+
+                }
             }
         }
     }
-}
+
 @Composable
-fun HomeScreen(){
+fun HomeScreen(navController: NavHostController) {
+
     Scaffold(topBar = {topAppBar()}) {
         Column(modifier = Modifier.padding(it)) {
             UpperPanel()
-            lowerPanel()
+            lowerPanel(navController)
         }
 
     }
 }
 
-@Preview(showBackground = true)
-@Composable
-fun HomeScreenPreview(){
-    LittleLemonRestaurentTheme {
-        HomeScreen()
-    }
-}

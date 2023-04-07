@@ -2,12 +2,12 @@ package com.example.littlelemonrestaurent
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
+
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Button
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
+import androidx.compose.material.*
 
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.painterResource
@@ -42,13 +42,14 @@ fun UpperPanel() {
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(top = 10.dp)
+                    .padding(top = 10.dp),
+                verticalAlignment = Alignment.Top
             ) {
                 Text(
                     text = stringResource(id = R.string.description),
                     modifier = Modifier
-                        .size(200.dp)
                         .padding(top = 15.dp)
+                        .fillMaxWidth(0.5f)
                 )
                 Image(
                     painter = painterResource(id = R.drawable.upperpanelimage),
@@ -58,7 +59,7 @@ fun UpperPanel() {
                     )
                 )
             }
-            Button(onClick = { /*TODO*/ }) {
+            Button(onClick = { /*TODO*/ }, colors = ButtonDefaults.buttonColors(backgroundColor = LittleLemonColor.yellow)) {
                 Text(text = stringResource(id = R.string.order_button_text))
             }
         }
