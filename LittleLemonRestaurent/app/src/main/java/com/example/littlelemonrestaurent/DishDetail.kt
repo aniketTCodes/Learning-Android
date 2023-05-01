@@ -6,7 +6,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 
 import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
@@ -25,10 +24,10 @@ fun DishDetail(id:Int){
         var counter by remember {
             mutableStateOf(0)
         }
-        Image(painter = painterResource(id = dishes[id].imageResource), contentDescription = "Dish image", modifier = Modifier.fillMaxWidth(), contentScale = ContentScale.FillWidth)
-        Text(text = dishes[id].name, modifier = Modifier.padding(8.dp), style  = MaterialTheme.typography.h2, fontSize = 36.sp, fontWeight = FontWeight.Bold)
+        Image(painter = painterResource(id = weeklySpecials[id].imageResource), contentDescription = "Dish image", modifier = Modifier.fillMaxWidth(), contentScale = ContentScale.FillWidth)
+        Text(text = weeklySpecials[id].name, modifier = Modifier.padding(8.dp), style  = MaterialTheme.typography.h2, fontSize = 36.sp, fontWeight = FontWeight.Bold)
 
-        Text(text = dishes[id].description, modifier = Modifier.padding(8.dp))
+        Text(text = weeklySpecials[id].description, modifier = Modifier.padding(8.dp))
         Row(modifier = Modifier
             .padding(start = 15.dp, bottom = 8.dp, top = 8.dp)
             .height(40.dp), horizontalArrangement = Arrangement.spacedBy(10.dp)) {
@@ -45,7 +44,7 @@ fun DishDetail(id:Int){
         Button(onClick = {}, colors = ButtonDefaults.buttonColors(LittleLemonColor.yellow), modifier = Modifier.fillMaxWidth().clip(
             RoundedCornerShape(10.dp)
         ).padding(8.dp)) {
-            Text(text = "Add for ${dishes[id].price}", textAlign = TextAlign.Center)
+            Text(text = "Add for ${weeklySpecials[id].price}", textAlign = TextAlign.Center)
         }
     }
 }

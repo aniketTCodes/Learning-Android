@@ -14,6 +14,11 @@ object DishScreen:Destinations{
 
 }
 
+object MenuScreen:Destinations{
+    override val route="Menu"
+
+}
+
 
 
 

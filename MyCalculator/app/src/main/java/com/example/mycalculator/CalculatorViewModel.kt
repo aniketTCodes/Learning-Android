@@ -45,7 +45,7 @@ class CalculatorViewModel:ViewModel() {
         var number1=state.number1.toDoubleOrNull()
         var number2=state.number2.toDoubleOrNull()
         if(number1!=null&&number2!=null)
-        when(state.operation){
+            when(state.operation){
             is CalculatorOperation.Add->number1+=number2
             is CalculatorOperation.Subtract->number1-=number2
             is CalculatorOperation.Multiply->number1*=number2
